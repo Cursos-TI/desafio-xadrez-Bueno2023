@@ -4,51 +4,63 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
-int main()
-{
+#include <stdio.h>
 
-    for (int i = 0; i < 5; i++)
-    {
-        printf("Movimento da Torre: Direita\n"); // Movimento da Torre: cinco casas para a direita
+// Movimentação recursiva da Torre (somente na vertical)
+void moverTorre(int casas) {
+    if (casas == 0) return;
+    printf("Cima\n");
+    moverTorre(casas - 1);
+}
+
+// Movimentação recursiva do Bispo (diagonal)
+void moverBispo(int x, int y) {
+    if (x == 0 || y == 0) return;
+    printf("Cima\n");
+    printf("Direita\n");
+    moverBispo(x - 1, y - 1);
+}
+
+// Movimentação recursiva da Rainha (vertical)
+void moverRainha(int casas) {
+    if (casas == 0) return;
+    printf("Cima\n");
+    moverRainha(casas - 1);
+}
+
+// Movimentação complexa do Cavalo (usando loops aninhados)
+void moverCavalo() {
+    printf("Movimento do Cavalo:\n");
+
+    for (int i = 0; i < 2; i++) {
+        printf("Cima\n");
     }
 
-    printf("\n");
-
-    printf("Movimento do bispo: Diagonal\n"); // Movimento do bispo: diagonal
-    int b = 1;
-    while (b <= 5)
-    {
-        printf("Cima, Direita\n");
-        b++;
+    for (int j = 0; j < 1; j++) {
+        printf("Direita\n");
     }
+}
 
+int main() {
+    printf("Movimentos das peças:\n\n");
+
+    // Torre move 3 casas para cima
+    printf("Movimento da Torre:\n");
+    moverTorre(3);
     printf("\n");
 
-    // Movimento da Rainha: oito casas para a esquerda (utilizando do-while)
+    // Bispo move 2 casas na diagonal
+    printf("Movimento do Bispo:\n");
+    moverBispo(2, 2);
+    printf("\n");
+
+    // Rainha move 4 casas para cima
     printf("Movimento da Rainha:\n");
-    int k = 1;
-    do
-    {
-        printf("Esquerda\n");
-        k++;
-    } while (k <= 8);
+    moverRainha(4);
+    printf("\n");
 
-    // Movimentos do Cavalo:
-    printf("\n"); // Linha em Branco (Pular linha)
-
-    printf("Movimento do cavalo: \n"); // Titulo movimento
-    for (int c = 1; c <= 2; c++) // Movendo duas casas para baixo (usando um loop for)
-    {
-        printf("Baixo\n");
-    }
-
-    // Movendo uma casa para a esquerda (usando um loop while)
-    int j = 0;
-    while (j < 1)
-    {
-        printf("Esquerda\n");
-        j++;
-    }
+    // Cavalo se move em "L"
+    moverCavalo();
 
     return 0;
 }
